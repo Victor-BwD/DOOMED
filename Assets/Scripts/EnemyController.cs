@@ -22,7 +22,15 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        rb.MovePosition(rb.position + direction.normalized * speed * Time.deltaTime);
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if(distance > 2.5)
+        {
+            Vector3 direction = player.transform.position - transform.position;
+            rb.MovePosition(rb.position + direction.normalized * speed * Time.deltaTime);
+
+            Quaternion newRotation = Quaternion.LookRotation(direction);
+            rb.MoveRotation(newRotation);
+        }
     }
 }

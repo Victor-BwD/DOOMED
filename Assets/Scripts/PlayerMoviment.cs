@@ -10,6 +10,8 @@ public class PlayerMoviment : MonoBehaviour
 
     Vector3 direction;
 
+    public LayerMask floorMask; // limit the ray just to hit the ground
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +44,21 @@ public class PlayerMoviment : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + (direction * speed * Time.deltaTime)); // Move player from rigibody position
+
+        Ray radius = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(radius.origin, radius.direction * 100, Color.red);
+
+        RaycastHit impact; // check collision
+
+        if(Physics.Raycast(radius, out impact, 100, floorMask))
+        {
+            Vector3 playerAimPosition = impact.point - transform.position;
+
+            playerAimPosition.y = transform.position.y;
+
+            Quaternion newRotation = Quaternion.LookRotation(playerAimPosition);
+
+            rb.MoveRotation(newRotation);
+        }
     }
 }

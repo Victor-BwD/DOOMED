@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
+        int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
+        transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
     }
 
     // Update is called once per frame

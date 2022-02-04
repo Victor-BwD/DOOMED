@@ -18,4 +18,15 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(rb.position + transform.forward * speedBullet * Time.deltaTime);
         Destroy(gameObject, 5f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Inimigo")
+        {
+            Destroy(other.gameObject);
+        }
+
+        Destroy(this.gameObject);
+        
+    }
 }

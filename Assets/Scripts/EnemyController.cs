@@ -7,11 +7,13 @@ public class EnemyController : MonoBehaviour
     Rigidbody rb;
     public GameObject player;
     public float speed = 5;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
         int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
         transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
@@ -39,11 +41,11 @@ public class EnemyController : MonoBehaviour
            
             rb.MoveRotation(newRotation);
 
-            GetComponent<Animator>().SetBool("isAttacking", false);
+            anim.SetBool("isAttacking", false);
         }
         else
         {
-            GetComponent<Animator>().SetBool("isAttacking", true);
+            anim.SetBool("isAttacking", true);
         }
 
     }

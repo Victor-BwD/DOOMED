@@ -15,12 +15,15 @@ public class PlayerMoviment : MonoBehaviour
 
     public GameObject gameOverText;
 
-    public bool isAlive;
+    public bool isAlive = true;
+
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         Time.timeScale = 1;
     }
 
@@ -38,11 +41,11 @@ public class PlayerMoviment : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            GetComponent<Animator>().SetBool("Running", true);
+            anim.SetBool("Running", true);
         }
         else
         {
-            GetComponent<Animator>().SetBool("Running", false);
+            anim.SetBool("Running", false);
         }
 
         if(isAlive == false)

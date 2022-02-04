@@ -42,5 +42,13 @@ public class EnemyController : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("isAttacking", true);
         }
+
+    }
+
+    void HitingPlayer()
+    {
+        Time.timeScale = 0;
+        player.GetComponent<PlayerMoviment>().gameOverText.SetActive(true);
+        player.GetComponent<PlayerMoviment>().isAlive = false;
     }
 }

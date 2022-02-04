@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMoviment : MonoBehaviour
 {
@@ -12,10 +13,15 @@ public class PlayerMoviment : MonoBehaviour
 
     public LayerMask floorMask; // limit the ray just to hit the ground
 
+    public GameObject gameOverText;
+
+    public bool isAlive;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -37,6 +43,14 @@ public class PlayerMoviment : MonoBehaviour
         else
         {
             GetComponent<Animator>().SetBool("Running", false);
+        }
+
+        if(isAlive == false)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                SceneManager.LoadScene("game");
+            }
         }
 
     }

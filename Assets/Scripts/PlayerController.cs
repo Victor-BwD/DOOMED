@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public int life = 100;
 
+    public UIController scriptUIController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
    public void TakeDamage(int damage)
     {
         life -= damage;
+        scriptUIController.UpdateSliderPlayerLife();
         if(life <= 0)
         {
             Time.timeScale = 0;

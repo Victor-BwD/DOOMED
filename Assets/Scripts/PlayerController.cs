@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMoviment : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     public float speed = 10f;
@@ -15,9 +15,9 @@ public class PlayerMoviment : MonoBehaviour
 
     public GameObject gameOverText;
 
-    public bool isAlive = true;
-
     Animator anim;
+
+    public int life = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,7 @@ public class PlayerMoviment : MonoBehaviour
             anim.SetBool("Running", false);
         }
 
-        if(isAlive == false)
+        if(life <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -77,5 +77,16 @@ public class PlayerMoviment : MonoBehaviour
 
             rb.MoveRotation(newRotation);
         }
+    }
+
+   public void TakeDamage(int damage)
+    {
+        life -= damage;
+        if(life <= 0)
+        {
+            Time.timeScale = 0;
+            gameOverText.SetActive(true);
+        }
+        
     }
 }

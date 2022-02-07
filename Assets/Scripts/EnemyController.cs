@@ -52,8 +52,7 @@ public class EnemyController : MonoBehaviour
 
     void HitingPlayer()
     {
-        Time.timeScale = 0;
-        player.GetComponent<PlayerMoviment>().gameOverText.SetActive(true);
-        player.GetComponent<PlayerMoviment>().isAlive = false;
+        int damageRandom = Random.Range(20, 30);
+        player.GetComponent<PlayerController>().TakeDamage(damageRandom);
     }
 }

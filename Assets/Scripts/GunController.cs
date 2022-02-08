@@ -8,6 +8,7 @@ public class GunController : MonoBehaviour
     GameObject bullet;
     [SerializeField]
     GameObject bulletSpawn;
+    public AudioClip shootSound;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class GunController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+            AudioController.instance.PlayOneShot(shootSound);
         }
     }
 }

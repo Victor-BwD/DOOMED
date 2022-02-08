@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public UIController scriptUIController;
 
+    public AudioClip damageSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         life -= damage;
         scriptUIController.UpdateSliderPlayerLife();
+        AudioController.instance.PlayOneShot(damageSound);
         if(life <= 0)
         {
             Time.timeScale = 0;

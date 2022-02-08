@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody rb;
     public float speedBullet = 20;
+    public AudioClip deathSoundZombie;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class Bullet : MonoBehaviour
         if(other.tag == "Inimigo")
         {
             Destroy(other.gameObject);
+            AudioController.instance.PlayOneShot(deathSoundZombie);
         }
 
         Destroy(this.gameObject);

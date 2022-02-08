@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedBullet: 40
+  deathSoundZombie: {fileID: 8300000, guid: 595eb2bf2334c2940b36699eb0fc9272, type: 3}
 --- !u!54 &7447135758477161851
 Rigidbody:
   m_ObjectHideFlags: 0

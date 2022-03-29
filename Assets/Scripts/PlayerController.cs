@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         float Xaxis = Input.GetAxis("Horizontal");
         float Zaxis = Input.GetAxis("Vertical");
 
-        direction = new Vector3(Xaxis, 0, Zaxis);
+        direction = new Vector3(Xaxis, 0, Zaxis).normalized;
 
         
 

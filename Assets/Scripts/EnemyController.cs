@@ -9,16 +9,16 @@ public class EnemyController : MonoBehaviour
     public float speed = 5;
     Animator anim;
     private Moviment movimentEnemy;
+    private AnimationCaracters animationEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
        
-        anim = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
-        int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
-        transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
         movimentEnemy = GetComponent<Moviment>();
+        animationEnemy = GetComponent<AnimationCaracters>();
+        RandomEnemyGeneration();
     }
 
     // Update is called once per frame
@@ -40,13 +40,12 @@ public class EnemyController : MonoBehaviour
 
             movimentEnemy.MovimentCaracter(direction, speed);
 
-         
+            animationEnemy.Attack(false);
 
-            anim.SetBool("isAttacking", false);
         }
         else
         {
-            anim.SetBool("isAttacking", true);
+            animationEnemy.Attack(true);
         }
 
     }
@@ -55,5 +54,11 @@ public class EnemyController : MonoBehaviour
     {
         int damageRandom = Random.Range(20, 30);
         player.GetComponent<PlayerController>().TakeDamage(damageRandom);
+    }
+
+    void RandomEnemyGeneration()
+    {
+        int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
+        transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
     }
 }

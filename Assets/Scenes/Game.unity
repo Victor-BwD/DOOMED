@@ -1677,6 +1677,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
+      propertyPath: speed
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: isAlive
       value: 1
       objectReference: {fileID: 0}
@@ -1692,6 +1696,10 @@ PrefabInstance:
       propertyPath: scriptUIController
       value: 
       objectReference: {fileID: 451055496}
+    - target: {fileID: 333609822, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_Name
       value: Player

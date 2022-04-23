@@ -1677,18 +1677,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: speed
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: isAlive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: damageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 836e8b74979de764a8e2e3939f8eda9a, type: 3}
-    - target: {fileID: 333609818, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: gameOverText
       value: 
       objectReference: {fileID: 721568791}
@@ -1696,16 +1684,8 @@ PrefabInstance:
       propertyPath: scriptUIController
       value: 
       objectReference: {fileID: 451055496}
-    - target: {fileID: 333609822, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4610746654156704, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
@@ -1752,10 +1732,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6611405492549871434, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: shootSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4398c050228d1dc4394d9b15c33c99a3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
 --- !u!4 &245166388 stripped

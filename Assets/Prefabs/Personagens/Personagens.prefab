@@ -2530,9 +2530,10 @@ GameObject:
   - component: {fileID: 333609819}
   - component: {fileID: 333609818}
   - component: {fileID: 6611405492549871434}
+  - component: {fileID: 1199106478187329115}
   m_Layer: 0
   m_Name: Personagens
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2590,7 +2591,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &333609820
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2636,10 +2637,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91191849b68afe849a1abb20563f885e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5.5
   floorMask:
     serializedVersion: 2
     m_Bits: 64
+  gameOverText: {fileID: 0}
+  life: 100
+  scriptUIController: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 836e8b74979de764a8e2e3939f8eda9a, type: 3}
 --- !u!114 &6611405492549871434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2654,6 +2659,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2863697719941284618, guid: deb7bf19fdab06849b3595a0d66904ac, type: 3}
   bulletSpawn: {fileID: 1484257728}
+  shootSound: {fileID: 8300000, guid: 4398c050228d1dc4394d9b15c33c99a3, type: 3}
+--- !u!114 &1199106478187329115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884102019447498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8c9f7412eb6be44b4ed1a736041999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1938851689004064
 GameObject:
   m_ObjectHideFlags: 0

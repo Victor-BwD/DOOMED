@@ -5,19 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float speed = 5f;
-    private Rigidbody rb;
-
     Vector3 direction;
 
     public LayerMask floorMask; // limit the ray just to hit the ground
 
     public GameObject gameOverText;
-
-    Animator anim;
-
-    public int life = 100;
 
     public UIController scriptUIController;
 
@@ -25,12 +17,16 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMoviment myPlayerMoviment;
 
+    private AnimationCaracters myAnimationPlayer;
+
+    public Status statusPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
         myPlayerMoviment = GetComponent<PlayerMoviment>();
+        myAnimationPlayer = GetComponent<AnimationCaracters>();
+        statusPlayer = GetComponent<Status>();
         Time.timeScale = 1;
     }
 
@@ -40,22 +36,15 @@ public class PlayerController : MonoBehaviour
         float Xaxis = Input.GetAxis("Horizontal");
         float Zaxis = Input.GetAxis("Vertical");
 
-        direction = new Vector3(Xaxis, 0, Zaxis).normalized;
+        direction = new Vector3(Xaxis, 0, Zaxis).normalized; 
 
-        
+        myAnimationPlayer.AnimationMoving(direction.magnitude); // get the magnitude from vector 3 to be compatible with float
 
         //transform.Translate(direction * speed * Time.deltaTime);
 
-        if (direction != Vector3.zero)
-        {
-            anim.SetBool("Running", true);
-        }
-        else
-        {
-            anim.SetBool("Running", false);
-        }
+        
 
-        if(life <= 0)
+        if(statusPlayer.health <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -67,17 +56,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        myPlayerMoviment.MovimentCaracter(direction, speed);
+        myPlayerMoviment.MovimentCaracter(direction, statusPlayer.speed);
 
         myPlayerMoviment.PlayerRotation(floorMask);
     }
 
    public void TakeDamage(int damage)
     {
-        life -= damage;
+        statusPlayer.health -= damage;
         scriptUIController.UpdateSliderPlayerLife();
         AudioController.instance.PlayOneShot(damageSound);
-        if(life <= 0)
+        if(statusPlayer.health <= 0)
         {
             Time.timeScale = 0;
             gameOverText.SetActive(true);

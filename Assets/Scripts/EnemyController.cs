@@ -6,10 +6,11 @@ public class EnemyController : MonoBehaviour
 {
     
     public GameObject player;
-    public float speed = 5;
     Animator anim;
     private Moviment movimentEnemy;
     private AnimationCaracters animationEnemy;
+    private Status statusEnemy;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         movimentEnemy = GetComponent<Moviment>();
         animationEnemy = GetComponent<AnimationCaracters>();
+        statusEnemy = GetComponent<Status>();
         RandomEnemyGeneration();
     }
 
@@ -38,7 +40,7 @@ public class EnemyController : MonoBehaviour
         if(distance > 2.5)
         {
 
-            movimentEnemy.MovimentCaracter(direction, speed);
+            movimentEnemy.MovimentCaracter(direction, statusEnemy.speed);
 
             animationEnemy.Attack(false);
 

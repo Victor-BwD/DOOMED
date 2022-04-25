@@ -20,6 +20,11 @@ public class AnimationCaracters : MonoBehaviour
 
     public void Attack(bool state)
     {
-        myAnimator.SetBool("isAttacking", state);
+        myAnimator.SetBool("isAttacking", state); // Receive a parameter from enemy script
+    }
+
+    public void AnimationMoving(float movingValue)
+    {
+        myAnimator.SetFloat("Running", movingValue);
     }
 }

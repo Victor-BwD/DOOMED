@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        sliderLifePlayer.maxValue = playerController.life;
+        sliderLifePlayer.maxValue = playerController.statusPlayer.health;
         UpdateSliderPlayerLife();
     }
 
@@ -24,6 +24,6 @@ public class UIController : MonoBehaviour
 
     public void UpdateSliderPlayerLife()
     {
-        sliderLifePlayer.value = playerController.life;
+        sliderLifePlayer.value = playerController.statusPlayer.health;
     }
 }

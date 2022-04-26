@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour, IKilliable
 {
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour, IKilliable
         myPlayerMoviment = GetComponent<PlayerMoviment>();
         myAnimationPlayer = GetComponent<AnimationCaracters>();
         statusPlayer = GetComponent<Status>();
-        Time.timeScale = 1;
+        
     }
 
     // Update is called once per frame
@@ -44,13 +44,7 @@ public class PlayerController : MonoBehaviour, IKilliable
 
         
 
-        if(statusPlayer.health <= 0)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                SceneManager.LoadScene("game");
-            }
-        }
+        
 
     }
 
@@ -75,7 +69,7 @@ public class PlayerController : MonoBehaviour, IKilliable
 
     public void Die()
     {
-        Time.timeScale = 0;
-        gameOverText.SetActive(true);
+        
+        scriptUIController.GameOver();
     }
 }

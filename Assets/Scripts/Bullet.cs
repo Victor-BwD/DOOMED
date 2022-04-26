@@ -24,8 +24,7 @@ public class Bullet : MonoBehaviour
     {
         if(other.tag == "Inimigo")
         {
-            Destroy(other.gameObject);
-            AudioController.instance.PlayOneShot(deathSoundZombie);
+            other.GetComponent<EnemyController>().TakeDamage(1);
         }
 
         Destroy(this.gameObject);

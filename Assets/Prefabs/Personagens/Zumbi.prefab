@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 3
+  deathSoundZombie: {fileID: 8300000, guid: 595eb2bf2334c2940b36699eb0fc9272, type: 3}
 --- !u!54 &8590848181586266507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ad89f9f98e23c4eaa99809d6a6aaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_Begin: 100
+  health_Begin: 1
   health: 0
   speed: 4
 --- !u!1 &1065480718027956

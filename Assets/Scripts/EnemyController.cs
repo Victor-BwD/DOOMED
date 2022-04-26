@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IKilliable
 {
     
     public GameObject player;
@@ -10,7 +10,12 @@ public class EnemyController : MonoBehaviour
     private Moviment movimentEnemy;
     private AnimationCaracters animationEnemy;
     private Status statusEnemy;
-
+    public AudioClip deathSoundZombie;
+    private Vector3 randomPosition;
+    private Vector3 direction;
+    private float countTimingWander;
+    private float timingbetweenRandomPositions = 4f;
+    private float radiusInsideSpawn = 12;
 
     // Start is called before the first frame update
     void Start()
@@ -31,17 +36,20 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = player.transform.position - transform.position;
-
         movimentEnemy.RotationCaracter(direction);
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if(distance > 2.5)
+        animationEnemy.AnimationMoving(direction.magnitude);
+
+        if(distance > 15)
+        {
+            Wander();
+        }
+        else if(distance > 2.5)
         {
 
-            movimentEnemy.MovimentCaracter(direction, statusEnemy.speed);
-
+            Pursuit();
             animationEnemy.Attack(false);
 
         }
@@ -50,6 +58,36 @@ public class EnemyController : MonoBehaviour
             animationEnemy.Attack(true);
         }
 
+    }
+    // Make zombie wander through the local
+    void Wander()
+    {
+        countTimingWander -= Time.deltaTime;
+        if(countTimingWander <= 0)
+        {
+            randomPosition = RandomPosition();
+            countTimingWander += timingbetweenRandomPositions;
+        }
+
+        bool closeEnough = Vector3.Distance(transform.position, randomPosition) <= 0.05; // return true or false
+
+        if (closeEnough == false)
+        {
+            direction = randomPosition - transform.position;
+            movimentEnemy.MovimentCaracter(direction, statusEnemy.speed);
+        }
+        
+        
+    }
+
+    // get a random position to zombie
+    Vector3 RandomPosition()
+    {
+        Vector3 position = Random.insideUnitSphere * radiusInsideSpawn; // generate a number inside of the area of spawn and increse the area from multiply
+        position += transform.position;
+        position.y = transform.position.y;
+
+        return position;
     }
 
     void HitingPlayer()
@@ -62,5 +100,26 @@ public class EnemyController : MonoBehaviour
     {
         int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
         transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
+    }
+
+    void Pursuit()
+    {
+        direction = player.transform.position - transform.position; // pursuit the player
+        movimentEnemy.MovimentCaracter(direction, statusEnemy.speed);
+    }
+
+    public void TakeDamage(int dano)
+    {
+        statusEnemy.health -= dano;
+        if(statusEnemy.health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+        AudioController.instance.PlayOneShot(deathSoundZombie);
     }
 }

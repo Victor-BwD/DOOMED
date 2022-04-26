@@ -10,7 +10,7 @@ public class Status : MonoBehaviour
     public float speed = 5f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         health = health_Begin;
     }

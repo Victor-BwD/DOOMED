@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKilliable
 {
     Vector3 direction;
 
@@ -68,9 +68,14 @@ public class PlayerController : MonoBehaviour
         AudioController.instance.PlayOneShot(damageSound);
         if(statusPlayer.health <= 0)
         {
-            Time.timeScale = 0;
-            gameOverText.SetActive(true);
+            Die();
         }
         
+    }
+
+    public void Die()
+    {
+        Time.timeScale = 0;
+        gameOverText.SetActive(true);
     }
 }

@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour, IKilliable
     private Vector3 direction;
     private float countTimingWander;
     private float timingbetweenRandomPositions = 4f;
-    private float radiusInsideSpawn = 12;
+    private float radiusSpawnDistance = 12;
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +83,7 @@ public class EnemyController : MonoBehaviour, IKilliable
     // get a random position to zombie
     Vector3 RandomPosition()
     {
-        Vector3 position = Random.insideUnitSphere * radiusInsideSpawn; // generate a number inside of the area of spawn and increse the area from multiply
+        Vector3 position = Random.insideUnitSphere * radiusSpawnDistance; // generate a number inside of the area of spawn and increse the area from multiply
         position += transform.position;
         position.y = transform.position.y;
 

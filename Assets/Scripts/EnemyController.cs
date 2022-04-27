@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour, IKilliable
         }
         else
         {
+            direction = player.transform.position - transform.position;
             animationEnemy.Attack(true);
         }
 

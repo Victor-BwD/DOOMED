@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour, IKilliable
     private float countTimingWander;
     private float timingbetweenRandomPositions = 4f;
     private float radiusSpawnDistance = 12;
+    private float percentGenerateMedkit = 0.1f;
+    public GameObject MedkitPrefab;
+    private UIController scriptUIController;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class EnemyController : MonoBehaviour, IKilliable
         movimentEnemy = GetComponent<Moviment>();
         animationEnemy = GetComponent<AnimationCaracters>();
         statusEnemy = GetComponent<Status>();
+        scriptUIController = GameObject.FindObjectOfType(typeof(UIController)) as UIController;
         RandomEnemyGeneration();
     }
 
@@ -118,9 +122,19 @@ public class EnemyController : MonoBehaviour, IKilliable
         }
     }
 
-    public void Die()
+    public void Die() // method to call when zombie dies
     {
         Destroy(gameObject);
         AudioController.instance.PlayOneShot(deathSoundZombie);
+        VerifyGenerationMedKit(percentGenerateMedkit);
+        scriptUIController.AttNumberDeadZombie(); // Update quantity of dead zombies
+    }
+
+    void VerifyGenerationMedKit(float percentGeneration) // Method to check if create medkit or not
+    {
+        if(Random.value < percentGeneration)
+        {
+            Instantiate(MedkitPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

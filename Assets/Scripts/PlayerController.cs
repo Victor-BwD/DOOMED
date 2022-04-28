@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerController : MonoBehaviour, IKilliable
+public class PlayerController : MonoBehaviour, IKilliable, ICurable
 {
     Vector3 direction;
 
@@ -71,5 +71,15 @@ public class PlayerController : MonoBehaviour, IKilliable
     {
         
         scriptUIController.GameOver();
+    }
+
+    public void HealHealth(int amountHealed)
+    {
+        statusPlayer.health += amountHealed;
+        if(statusPlayer.health > statusPlayer.health_Begin)
+        {
+            statusPlayer.health = statusPlayer.health_Begin;
+        }
+        scriptUIController.UpdateSliderPlayerLife();
     }
 }

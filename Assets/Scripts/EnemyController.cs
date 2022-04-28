@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour, IKilliable
     private float percentGenerateMedkit = 0.1f;
     public GameObject MedkitPrefab;
     private UIController scriptUIController;
+    [HideInInspector]
+    public ZombieSpawn mySpawn;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -128,6 +131,7 @@ public class EnemyController : MonoBehaviour, IKilliable
         AudioController.instance.PlayOneShot(deathSoundZombie);
         VerifyGenerationMedKit(percentGenerateMedkit);
         scriptUIController.AttNumberDeadZombie(); // Update quantity of dead zombies
+        mySpawn.DecreaseAmountZombiesAlive();
     }
 
     void VerifyGenerationMedKit(float percentGeneration) // Method to check if create medkit or not

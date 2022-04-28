@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c391c78235e1840908c4eb044dba49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 1063500868937916, guid: 35861510587b7489780fe86970823679, type: 3}
+  zombiePrefab: {fileID: 1063500868937916, guid: 35861510587b7489780fe86970823679, type: 3}
   timeSpawnZombies: 2
   LayerZumbi:
     serializedVersion: 2
     m_Bits: 128
+  distancePlayerToSpawnEnemies: 20

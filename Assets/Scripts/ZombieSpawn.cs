@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieSpawn : MonoBehaviour
 {
     [SerializeField]
-    GameObject zombie;
+    GameObject zombiePrefab;
     float timeCounting = 0;
 
     public float timeSpawnZombies = 1;
@@ -18,16 +18,31 @@ public class ZombieSpawn : MonoBehaviour
 
     private GameObject player;
 
+    private int maxNumberZombiesAlive = 3;
+
+    private int numberZombiesAlive;
+
+    private float proxTimeToIncreaseDifficulty = 20; // each 30 seconds increase dificulty
+
+    private float countIncreaseDifficulty; // keep the time to increase difficulty
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        countIncreaseDifficulty = proxTimeToIncreaseDifficulty;
+        for(int i = 0; i < maxNumberZombiesAlive; i++) // start the phase with maximum zombies alive
+        {
+            StartCoroutine(SpawNewZombie()); 
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, player.transform.position) > distancePlayerToSpawnEnemies) // check if player are far from spawn point
+        bool canIMakeZombiesFromTheDistance = Vector3.Distance(transform.position, player.transform.position) > distancePlayerToSpawnEnemies; // check if player are far from spawn point
+
+        if (canIMakeZombiesFromTheDistance && numberZombiesAlive < maxNumberZombiesAlive) // check if player are far from spawn point and check if number of zumbis alive is minus than max number of zombies allowed
         {
             timeCounting += Time.deltaTime; // Timer couting 1 sec
 
@@ -38,7 +53,11 @@ public class ZombieSpawn : MonoBehaviour
             }
         }
 
-        
+        if(Time.timeSinceLevelLoad >= countIncreaseDifficulty)
+        {
+            maxNumberZombiesAlive++;
+            countIncreaseDifficulty = Time.timeSinceLevelLoad + proxTimeToIncreaseDifficulty;
+        }
 
         
     }
@@ -56,7 +75,9 @@ public class ZombieSpawn : MonoBehaviour
             collisions = Physics.OverlapSphere(createPosition, 1, LayerZumbi); // Create a ball to check if have a collision in this place to spawn zombie safe
             yield return null; // make certain dont have a infinite loop and crash Unity
         }
-        Instantiate(zombie, createPosition, this.transform.rotation); // Instantiate gets the vector3 of RandomizerPosition
+        EnemyController zombie = Instantiate(zombiePrefab, createPosition, this.transform.rotation).GetComponent<EnemyController>(); // Instantiate gets the vector3 of RandomizerPosition and get the script
+        zombie.mySpawn = this; // spawn that spawned the zombie, link zombie a spawn
+        numberZombiesAlive++;
     }
 
     // Increse the radius of the spawns
@@ -67,6 +88,11 @@ public class ZombieSpawn : MonoBehaviour
         position.y = 0;
 
         return position;
+    }
+
+    public void DecreaseAmountZombiesAlive()
+    {
+        numberZombiesAlive--;
     }
 
     private void OnDrawGizmos()

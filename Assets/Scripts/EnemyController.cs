@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour, IKilliable
         if(countTimingWander <= 0)
         {
             randomPosition = RandomPosition();
-            countTimingWander += timingbetweenRandomPositions;
+            countTimingWander += timingbetweenRandomPositions + Random.Range(-1f, 1f); // make zombies walk
         }
 
         bool closeEnough = Vector3.Distance(transform.position, randomPosition) <= 0.05; // return true or false

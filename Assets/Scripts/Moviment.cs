@@ -28,4 +28,11 @@ public class Moviment : MonoBehaviour
         Quaternion newRotation = Quaternion.LookRotation(direction);
         myRigidbody.MoveRotation(newRotation);
     }
+
+    public void Death()
+    {
+        myRigidbody.constraints = RigidbodyConstraints.None;
+        myRigidbody.velocity = Vector3.zero;
+        GetComponent<Collider>().enabled = false;
+    }
 }

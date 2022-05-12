@@ -127,7 +127,10 @@ public class EnemyController : MonoBehaviour, IKilliable
 
     public void Die() // method to call when zombie dies
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 2f); // Destroy enemy after 2 seconds
+        animationEnemy.Dead(); // run animation to fall on the floor in AnimationCaracters
+        this.enabled = false; // Desable the script
+        movimentEnemy.Death(); // Run the function in the Moviment script
         AudioController.instance.PlayOneShot(deathSoundZombie);
         VerifyGenerationMedKit(percentGenerateMedkit);
         scriptUIController.AttNumberDeadZombie(); // Update quantity of dead zombies

@@ -27,4 +27,9 @@ public class AnimationCaracters : MonoBehaviour
     {
         myAnimator.SetFloat("Running", movingValue);
     }
+
+    public void Dead()
+    {
+        myAnimator.SetTrigger("Death");
+    }
 }

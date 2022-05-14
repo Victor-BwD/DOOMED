@@ -106,7 +106,7 @@ public class EnemyController : MonoBehaviour, IKilliable
 
     void RandomEnemyGeneration()
     {
-        int zombieTypeGenerator = Random.Range(1, 28); // Random int between 1 and 27
+        int zombieTypeGenerator = Random.Range(1, transform.childCount); // Random int between 1 and 27
         transform.GetChild(zombieTypeGenerator).gameObject.SetActive(true); // Enter on zombie, get child, return to gameobject and active
     }
 

@@ -33,6 +33,7 @@ public class Moviment : MonoBehaviour
     {
         myRigidbody.constraints = RigidbodyConstraints.None;
         myRigidbody.velocity = Vector3.zero;
+        myRigidbody.isKinematic = false;
         GetComponent<Collider>().enabled = false;
     }
 }

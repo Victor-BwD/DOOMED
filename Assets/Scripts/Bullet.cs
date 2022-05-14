@@ -22,9 +22,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Inimigo")
+        switch(other.tag)
         {
-            other.GetComponent<EnemyController>().TakeDamage(1);
+            case "Inimigo":
+                other.GetComponent<EnemyController>().TakeDamage(1);
+                break;
+            case "Boss":
+                other.GetComponent<BossController>().TakeDamage(1);
+                break ;
         }
 
         Destroy(this.gameObject);

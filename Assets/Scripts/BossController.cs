@@ -13,6 +13,8 @@ public class BossController : MonoBehaviour, IKilliable
     private Moviment rotationBoss;
     public GameObject medkitPrefab;
     public Slider SliderBossHealth;
+    public Image imageSlider;
+    public Color colorOfMaxHealth, colorOfMinHealth;
 
     private void Start()
     {
@@ -58,7 +60,7 @@ public class BossController : MonoBehaviour, IKilliable
     {
         statusBoss.health -= dano;
         UpdateInterface();
-        if(statusBoss.health < 0)
+        if(statusBoss.health <= 0)
         {
             Die();
         }
@@ -77,5 +79,8 @@ public class BossController : MonoBehaviour, IKilliable
     void UpdateInterface ()
     {
         SliderBossHealth.value = statusBoss.health;
+        float healthPercentage = (float)statusBoss.health / statusBoss.health_Begin;
+        Color healthColor = Color.Lerp(colorOfMinHealth, colorOfMaxHealth, healthPercentage);
+        imageSlider.color = healthColor;
     }
 }

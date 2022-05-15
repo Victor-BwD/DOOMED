@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour, IKilliable
 {
@@ -11,6 +12,7 @@ public class BossController : MonoBehaviour, IKilliable
     private AnimationCaracters animationBoss;
     private Moviment rotationBoss;
     public GameObject medkitPrefab;
+    public Slider SliderBossHealth;
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class BossController : MonoBehaviour, IKilliable
         agent.speed = statusBoss.speed;
         animationBoss = GetComponent<AnimationCaracters>();
         rotationBoss = GetComponent<Moviment>();
+        SliderBossHealth.maxValue = statusBoss.health_Begin;
+        UpdateInterface();
     }
 
     private void Update()
@@ -53,6 +57,7 @@ public class BossController : MonoBehaviour, IKilliable
     public void TakeDamage(int dano)
     {
         statusBoss.health -= dano;
+        UpdateInterface();
         if(statusBoss.health < 0)
         {
             Die();
@@ -67,5 +72,10 @@ public class BossController : MonoBehaviour, IKilliable
         agent.enabled = false;
         Instantiate(medkitPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject, 2f);
+    }
+
+    void UpdateInterface ()
+    {
+        SliderBossHealth.value = statusBoss.health;
     }
 }

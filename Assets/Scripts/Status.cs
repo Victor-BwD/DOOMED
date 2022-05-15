@@ -14,10 +14,4 @@ public class Status : MonoBehaviour
     {
         health = health_Begin;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

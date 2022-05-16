@@ -13,7 +13,8 @@ public class UIController : MonoBehaviour
     public Text textTimingSurvivedMax; // Text in unity editor to show max time
     private float timePointsSaved; // var to save the best time
     private int numberOfDeadZombies;
-    public Text textNumberOfDeadZombies; 
+    public Text textNumberOfDeadZombies;
+    public Text bossAppearText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AttNumberDeadZombie() // method to call in enemyController to make score
@@ -61,7 +62,7 @@ public class UIController : MonoBehaviour
 
     void AdjustMaxPoints(int min, int sec)
     {
-        if(Time.timeSinceLevelLoad > timePointsSaved) // if the time since level is load are bigger than time saved
+        if (Time.timeSinceLevelLoad > timePointsSaved) // if the time since level is load are bigger than time saved
         {
             timePointsSaved = Time.timeSinceLevelLoad; // keep this in the variable
             textTimingSurvivedMax.text = string.Format("Your best time: {0} minutes and {1} seconds", min, sec); // concat
@@ -72,6 +73,32 @@ public class UIController : MonoBehaviour
             min = (int)timePointsSaved / 60;
             sec = (int)timePointsSaved % 60;
             textTimingSurvivedMax.text = string.Format("Your best time: {0} minutes and {1} seconds", min, sec);
+        }
+    }
+
+    public void AppearTextBossCreated()
+    {
+        StartCoroutine(DisappearText(2, bossAppearText));
+    }
+
+    IEnumerator DisappearText(float timeToDisappear, Text textToDesappear)
+    {
+        textToDesappear.gameObject.SetActive(true);
+        Color textColor = textToDesappear.color;
+        textColor.a = 1;
+        textToDesappear.color = textColor;
+        yield return new WaitForSeconds(timeToDisappear);
+        float count = 0;
+        while(textToDesappear.color.a > 0)
+        {
+            count += Time.deltaTime / timeToDisappear;
+            textColor.a = Mathf.Lerp(1, 0, count);
+            textToDesappear.color = textColor;
+            if(textToDesappear.color.a <= 0)
+            {
+                textToDesappear.gameObject.SetActive(false);
+            }
+            yield return null;
         }
     }
 }

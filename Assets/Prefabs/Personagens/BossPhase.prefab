@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &146429221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -545,9 +545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ad89f9f98e23c4eaa99809d6a6aaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_Begin: 15
+  health_Begin: 13
   health: 0
-  speed: 3.5
+  speed: 5.1
 --- !u!195 &794468518842596903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -558,7 +558,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.2
-  m_Speed: 5.3
+  m_Speed: 5.1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -584,6 +584,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medkitPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
   SliderBossHealth: {fileID: 694294793}
+  imageSlider: {fileID: 1403949652}
+  colorOfMaxHealth: {r: 0.121885024, g: 0.7830189, b: 0.16342215, a: 1}
+  colorOfMinHealth: {r: 0.7735849, g: 0.1715023, b: 0.1715023, a: 1}
 --- !u!1 &1065480718027956
 GameObject:
   m_ObjectHideFlags: 0

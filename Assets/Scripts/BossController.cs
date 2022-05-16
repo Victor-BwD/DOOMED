@@ -71,9 +71,9 @@ public class BossController : MonoBehaviour, IKilliable
         animationBoss.Dead();
         rotationBoss.Death();
         this.enabled = false;
-        agent.enabled = false;
+        StartCoroutine(waiter());
         Instantiate(medkitPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 10f);
     }
 
     void UpdateInterface ()
@@ -82,5 +82,12 @@ public class BossController : MonoBehaviour, IKilliable
         float healthPercentage = (float)statusBoss.health / statusBoss.health_Begin;
         Color healthColor = Color.Lerp(colorOfMinHealth, colorOfMaxHealth, healthPercentage);
         imageSlider.color = healthColor;
+    }
+
+    IEnumerator waiter()
+    {
+
+        yield return new WaitForSeconds(2);
+        agent.enabled = false;
     }
 }

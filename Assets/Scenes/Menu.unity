@@ -1800,6 +1800,10 @@ PrefabInstance:
       propertyPath: scriptUIController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 333609819, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1bd4ac6f63ac5224297848a86f2298e6, type: 2}
     - target: {fileID: 333609826, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: speed
       value: 5.2
@@ -9585,8 +9589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -34}
-  m_SizeDelta: {x: 378.1919, y: 104.7523}
+  m_AnchoredPosition: {x: -0.0000095367, y: -13.402}
+  m_SizeDelta: {x: 423.6446, y: 118.1645}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1698177795
 MonoBehaviour:
@@ -9610,11 +9614,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: aa1c8b3a7fd88c146ba70af83d55f4df, type: 3}
-    m_FontSize: 50
+    m_FontSize: 58
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 50
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

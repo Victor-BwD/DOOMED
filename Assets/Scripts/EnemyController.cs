@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour, IKilliable
     private UIController scriptUIController;
     [HideInInspector]
     public ZombieSpawn mySpawn;
+    public GameObject bloodParticleZombie;
     
 
     // Start is called before the first frame update
@@ -123,6 +124,12 @@ public class EnemyController : MonoBehaviour, IKilliable
         {
             Die();
         }
+    }
+
+    // Function to spawn blood from zombies, receive parameters from bullet script
+    public void BloodParticle(Vector3 position, Quaternion rotation)
+    {
+        Instantiate(bloodParticleZombie, position, rotation);
     }
 
     public void Die() // method to call when zombie dies

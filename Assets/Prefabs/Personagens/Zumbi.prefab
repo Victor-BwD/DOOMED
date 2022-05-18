@@ -649,6 +649,7 @@ MonoBehaviour:
   deathSoundZombie: {fileID: 8300000, guid: 595eb2bf2334c2940b36699eb0fc9272, type: 3}
   MedkitPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
   mySpawn: {fileID: 0}
+  bloodParticleZombie: {fileID: 1441826958236822678, guid: 25fa35cba29f71d4797d777df55cfb36, type: 3}
 --- !u!54 &8590848181586266507
 Rigidbody:
   m_ObjectHideFlags: 0

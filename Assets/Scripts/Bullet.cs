@@ -22,10 +22,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Quaternion oppositePositionFromBullet = Quaternion.LookRotation(-transform.forward);
         switch(other.tag)
         {
             case "Inimigo":
-                other.GetComponent<EnemyController>().TakeDamage(1);
+                EnemyController enemy = other.GetComponent<EnemyController>();
+                enemy.TakeDamage(1);
+                enemy.BloodParticle(transform.position, oppositePositionFromBullet);
                 break;
             case "Boss":
                 other.GetComponent<BossController>().TakeDamage(1);
